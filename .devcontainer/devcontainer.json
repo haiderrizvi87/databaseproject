@@ -1,0 +1,29 @@
+{
+  "name": "SQL Course (MySQL)",
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "app",
+  "workspaceFolder": "/workspace",
+
+  // Runs once, after the container is created, to load both databases
+  // from the .sql files in /data so every module starts from the same
+  // known state.
+  "postCreateCommand": "bash .devcontainer/load-data.sh",
+
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "mtxr.sqltools",
+        "mtxr.sqltools-driver-mysql",
+        "ritwickdey.liveserver"
+      ]
+    }
+  },
+
+  "forwardPorts": [3306],
+  "portsAttributes": {
+    "3306": {
+      "label": "MySQL",
+      "onAutoForward": "silent"
+    }
+  }
+}
